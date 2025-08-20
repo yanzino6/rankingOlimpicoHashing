@@ -15,4 +15,6 @@ void atualizaMedalhas(tPais *p1, tPais *p2);
 
 void imprimePais(tPais *pais);
 
+int verificaPaisNaLista(tPais *lista, tPais *paisRecebido);
+
 #endif

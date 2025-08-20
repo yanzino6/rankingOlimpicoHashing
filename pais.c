@@ -35,7 +35,7 @@ void adicionaPaisColisao(tPais *pais1, tPais *paisColisao)
     else
     {
         pais1->prox=paisColisao;
-        paisColisao->prox;
+        paisColisao->prox=NULL;
     }
 }
 
@@ -79,4 +79,20 @@ void imprimePais(tPais *pais)
         imprimePais(pais->prox);
     }
     
+}
+
+int verificaPaisNaLista(tPais *lista, tPais *paisRecebido)
+{
+    if (lista!=NULL)
+    {
+        if (lista->sigla==paisRecebido->sigla)
+        {
+            return 1;
+        }
+        else
+        {
+            return verificaPaisNaLista(lista->prox,paisRecebido);
+        }
+    }
+    return 0;
 }

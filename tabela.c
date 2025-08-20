@@ -72,6 +72,11 @@ int verificaElemExiste(tHash *tabela, tPais *elem)
     {
         return 1;
     }
+    else if (verificaPaisNaLista(tabela->paises[indice],elem)==1)
+    {
+        return 1;
+    }
+    
     return 0;
 }
 
@@ -96,6 +101,7 @@ void redimensionaTabela(tHash *tabela)
     int tamAntigo = tabela->tamTabela;
     tPais **paises = tabela->paises;
     tabela->tamTabela *= 1.947;
+    tabela->qtdItens=0;
     tabela->paises = (tPais **)malloc(tabela->tamTabela * sizeof(tPais *));
     for (int i = 0; i < tabela->tamTabela; i++)
     {
