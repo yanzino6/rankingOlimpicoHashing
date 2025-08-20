@@ -14,6 +14,7 @@ tHash *criaHash(int tamTabela)
 {
     tHash *criada = (tHash *)malloc(sizeof(tHash));
     criada->tamTabela = tamTabela;
+    criada->qtdItens=0;
     criada->paises = (tPais **)malloc(tamTabela * sizeof(tPais *));
     for (int i = 0; i < criada->tamTabela; i++)
     {
@@ -61,6 +62,7 @@ tHash *insereElemHash(tPais *pais, tHash *tabela)
     else
     {
         adicionaPaisColisao(tabela->paises[indice], pais);
+        tabela->qtdItens++;
         return tabela;
     }
 }
@@ -70,11 +72,7 @@ int verificaElemExiste(tHash *tabela, tPais *elem)
     int indice = funcHash(getSiglaPais(elem), tabela);
     if (tabela->paises[indice] != NULL)
     {
-        return 1;
-    }
-    else if (verificaPaisNaLista(tabela->paises[indice],elem)==1)
-    {
-        return 1;
+        return verificaPaisNaLista(tabela->paises[indice],elem);
     }
     
     return 0;
@@ -103,6 +101,7 @@ void redimensionaTabela(tHash *tabela)
     tabela->tamTabela *= 1.947;
     tabela->qtdItens=0;
     tabela->paises = (tPais **)malloc(tabela->tamTabela * sizeof(tPais *));
+    tPais *prox;
     for (int i = 0; i < tabela->tamTabela; i++)
     {
         tabela->paises[i] = NULL;
@@ -112,6 +111,13 @@ void redimensionaTabela(tHash *tabela)
         if (paises[i])
         {
             insereElemHash(paises[i],tabela);
+            prox=getProx(paises[i]);
+            while (prox!=NULL)
+            {
+                insereElemHash(prox,tabela);
+                prox=getProx(prox);
+            }
+            
         }
     }
     free(paises);

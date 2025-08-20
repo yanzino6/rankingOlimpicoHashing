@@ -17,4 +17,6 @@ void imprimePais(tPais *pais);
 
 int verificaPaisNaLista(tPais *lista, tPais *paisRecebido);
 
+tPais *getProx(tPais *pais);
+
 #endif

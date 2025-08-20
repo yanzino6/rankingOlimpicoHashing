@@ -85,7 +85,7 @@ int verificaPaisNaLista(tPais *lista, tPais *paisRecebido)
 {
     if (lista!=NULL)
     {
-        if (lista->sigla==paisRecebido->sigla)
+        if (strcmp(lista->sigla,paisRecebido->sigla)==0)
         {
             return 1;
         }
@@ -95,4 +95,9 @@ int verificaPaisNaLista(tPais *lista, tPais *paisRecebido)
         }
     }
     return 0;
+}
+
+tPais *getProx(tPais *pais)
+{
+    return pais->prox;
 }

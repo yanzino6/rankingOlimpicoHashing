@@ -7,7 +7,7 @@ int main()
     char nomepais[4];
     int ouros,pratas,bronzes,total;
     tPais *pais;
-    tHash *tabela =criaHash(32);
+    tHash *tabela =criaHash(2000);
 
     while (fscanf(leEntrada,"%s %d %d %d %d\n",nomepais,&ouros,&pratas,&bronzes,&total)==5)
     {
